@@ -28,6 +28,18 @@ plt.show()
 sns.countplot(data = df, x = 'variety')
 plt.show()
 
+# Set up PairGrid
+g = sns.PairGrid(data = df, hue="variety", corner=True)  # Only view the lower triangle
+
+# Map the plots
+g.map_lower(sns.scatterplot)
+g.map_diag(sns.kdeplot)  # or use sns.histplot for histogram
+
+# Add legend
+g.add_legend()
+
+plt.show()
+
 # Split the dataset into train and test set for logistic regression
 X = df.drop('variety', axis=1)  # features
 y = df['variety']
